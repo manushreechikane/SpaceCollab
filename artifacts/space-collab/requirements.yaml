@@ -1,0 +1,22 @@
+packages:
+  "framer-motion": "For smooth page transitions, floating effects, and beautiful space animations"
+  "clsx": "Utility for conditionally joining classNames"
+  "tailwind-merge": "Utility to safely merge Tailwind classes"
+  "lucide-react": "Beautiful iconography for space themes"
+  "date-fns": "For elegant date formatting"
+
+images:
+  - path: "artifacts/space-collab/public/images/hero-nebula.png"
+    description: "Deep dark cosmic space nebula with glowing cyan and bright purple star clusters, very realistic and beautiful, 4k high quality"
+    aspect_ratio: "16:9"
+  - path: "artifacts/space-collab/public/images/planet-illustration.png"
+    description: "Abstract stylized 3D illustration of a glowing ringed exoplanet in dark space, holographic aesthetic"
+    aspect_ratio: "1:1"
+  - path: "artifacts/space-collab/public/images/astronaut-avatar.png"
+    description: "Minimalist stylized astronaut helmet icon, glowing neon edges, dark background"
+    aspect_ratio: "1:1"
+
+notes:
+  - JWT auth token is stored in localStorage as 'spaceCollab_token'
+  - The frontend polls /api/messages/:id every 5 seconds to simulate real-time chat
+  - All standard CRUD API calls include the Authorization header with the JWT token

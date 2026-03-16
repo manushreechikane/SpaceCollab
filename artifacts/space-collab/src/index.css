@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --font-display: 'Outfit', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+
+  --color-background: hsl(230 40% 4%);
+  --color-foreground: hsl(210 40% 98%);
+  
+  --color-card: hsl(230 35% 8%);
+  --color-card-foreground: hsl(210 40% 98%);
+  
+  --color-popover: hsl(230 35% 8%);
+  --color-popover-foreground: hsl(210 40% 98%);
+  
+  --color-primary: hsl(190 90% 55%);
+  --color-primary-foreground: hsl(230 40% 10%);
+  
+  --color-secondary: hsl(280 80% 60%);
+  --color-secondary-foreground: hsl(210 40% 98%);
+  
+  --color-muted: hsl(230 30% 15%);
+  --color-muted-foreground: hsl(215 20% 65%);
+  
+  --color-accent: hsl(280 80% 60%);
+  --color-accent-foreground: hsl(210 40% 98%);
+  
+  --color-destructive: hsl(350 80% 60%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+  
+  --color-border: hsl(230 30% 20%);
+  --color-input: hsl(230 30% 15%);
+  --color-ring: hsl(190 90% 55%);
+}
+
+:root {
+  --background: 230 40% 4%;
+  --foreground: 210 40% 98%;
+  
+  --card: 230 35% 8%;
+  --card-foreground: 210 40% 98%;
+  
+  --popover: 230 35% 8%;
+  --popover-foreground: 210 40% 98%;
+  
+  --primary: 190 90% 55%;
+  --primary-foreground: 230 40% 10%;
+  
+  --secondary: 280 80% 60%;
+  --secondary-foreground: 210 40% 98%;
+  
+  --muted: 230 30% 15%;
+  --muted-foreground: 215 20% 65%;
+  
+  --accent: 280 80% 60%;
+  --accent-foreground: 210 40% 98%;
+  
+  --destructive: 350 80% 60%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 230 30% 20%;
+  --input: 230 30% 15%;
+  --ring: 190 90% 55%;
+
+  --radius: 1rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased font-sans selection:bg-primary/30 selection:text-primary-foreground overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply tracking-tight font-bold;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-card/60 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)];
+  }
+  
+  .glass-input {
+    @apply bg-background/50 border border-white/10 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 backdrop-blur-sm text-foreground placeholder:text-muted-foreground transition-all duration-300;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+  
+  .text-glow-accent {
+    text-shadow: 0 0 20px hsl(var(--accent) / 0.5);
+  }
+
+  .box-glow {
+    box-shadow: 0 0 25px hsl(var(--primary) / 0.2);
+  }
+  
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent;
+  }
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
