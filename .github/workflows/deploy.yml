@@ -1,0 +1,45 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Install pnpm 📦
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install Node.js ⚙️
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install dependencies 🔧
+        run: pnpm install
+
+      - name: Generate API Types 🛠️
+        run: pnpm --filter @workspace/api-spec run codegen
+
+      - name: Build Frontend 🏗️
+        run: pnpm --filter @workspace/space-collab run build
+        env:
+          PORT: 5173
+          BASE_PATH: /SpaceCollab/
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: artifacts/space-collab/dist/public
+          branch: gh-pages
